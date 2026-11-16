@@ -1,0 +1,65 @@
+name: Pruebas y publicación
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  unitarias:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm test
+
+  punta-a-punta:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Dependencias de prueba
+        run: |
+          npm install --no-save pdf-lib@1.17.1
+          pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Pruebas
+        run: |
+          python -m http.server 5174 &
+          sleep 1
+          python tests/e2e/flujos.py
+
+  publicar:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: [unitarias, punta-a-punta]
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.despliegue.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Armar el sitio
+        run: |
+          mkdir _site
+          cp -r index.html manifest.webmanifest sw.js css js vendor fonts assets _site/
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+      - id: despliegue
+        uses: actions/deploy-pages@v4

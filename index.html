@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Margen: leé y estudiá tus PDFs</title>
+  <meta name="description" content="Subí tus PDFs y obtené resúmenes, glosarios, preguntas de repaso y respuestas con la página exacta de cada cita. Funciona en tu navegador con Gemini.">
+  <meta name="theme-color" content="#f1f3f6">
+  <meta name="color-scheme" content="light">
+  <meta property="og:title" content="Margen: leé y estudiá tus PDFs">
+  <meta property="og:description" content="Resúmenes, glosarios, repaso espaciado y preguntas con citas verificadas a la página.">
+  <link rel="icon" href="assets/icono.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="preload" href="fonts/lora.woff" as="font" type="font/woff" crossorigin>
+  <link rel="preload" href="fonts/inter-regular.woff" as="font" type="font/woff" crossorigin>
+  <link rel="stylesheet" href="css/margen.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <a class="saltar" href="#vista">Saltar al contenido</a>
+  <header class="cabecera">
+    <a class="marca" href="#/">Margen</a>
+    <nav class="nav" aria-label="Secciones">
+      <a href="#/" data-seccion="biblioteca">
+        <svg class="icono" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 5c3-1 6-1 8 1 2-2 5-2 8-1v14c-3-1-6-1-8 1-2-2-5-2-8-1zM12 6v14"/></svg><span>Biblioteca</span></a>
+      <a href="#/preguntar" data-seccion="preguntar">
+        <svg class="icono" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 5h14v10H9l-4 4z"/></svg><span>Preguntar</span></a>
+      <a href="#/ajustes" data-seccion="ajustes">
+        <svg class="icono" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10M14 4v6M6 14v6"/></svg><span>Ajustes</span></a>
+    </nav>
+  </header>
+  <main id="vista" tabindex="-1">
+    <noscript><p>Margen necesita JavaScript para funcionar.</p></noscript>
+  </main>
+  <div id="avisos" aria-live="polite"></div>
+  <div id="anuncios" class="solo-lectores" aria-live="polite"></div>
+</body>
+</html>
