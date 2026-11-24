@@ -46,13 +46,10 @@ jobs:
           sleep 1
           python tests/e2e/flujos.py
 
-  publicar:
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+  armar-sitio:
     needs: [unitarias, punta-a-punta]
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.despliegue.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - name: Armar el sitio
@@ -61,5 +58,14 @@ jobs:
           cp -r index.html manifest.webmanifest sw.js css js vendor fonts assets _site/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
+
+  publicar:
+    # En un job aparte: si se publica en el mismo job que sube el paquete, GitHub a veces todavía no lo registró.
+    needs: armar-sitio
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.despliegue.outputs.page_url }}
+    steps:
       - id: despliegue
         uses: actions/deploy-pages@v4
