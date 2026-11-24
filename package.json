@@ -8,5 +8,8 @@
     "dev": "python3 -m http.server 5174",
     "test": "node --test \"tests/**/*.test.js\"",
     "test:e2e": "python3 tests/e2e/flujos.py"
+  },
+  "devDependencies": {
+    "pdf-lib": "1.17.1"
   }
 }

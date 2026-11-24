@@ -86,6 +86,7 @@ python3 -m http.server 5174     # o: npm run dev
 
 ```bash
 npm test             # 20 pruebas unitarias (Node, sin dependencias)
+npm install && pip install playwright && playwright install chromium   # solo la primera vez
 npm run test:e2e     # pruebas punta a punta con Playwright y Gemini simulado
 ```
 

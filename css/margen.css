@@ -223,7 +223,7 @@ select.entrada { padding-right: 2rem; }
 .visor__hoja--destello { animation: destello 1.2s ease-out; }
 @keyframes destello { 0% { box-shadow: 0 0 0 3px var(--tinta), var(--sombra-hoja); } 100% { box-shadow: 0 0 0 3px transparent, var(--sombra-hoja); } }
 .visor__lienzo { position: absolute; inset: 0; }
-.visor__numero { position: absolute; right: -2.25rem; top: 0; color: var(--gris-claro); font-size: 0.8125rem; font-variant-numeric: tabular-nums; }
+.visor__numero { position: absolute; right: 0.625rem; top: 0.5rem; z-index: 2; color: var(--gris-claro); font-size: 0.8125rem; font-variant-numeric: tabular-nums; }
 .visor__vacio { padding: 2rem; color: var(--gris); }
 
 /* Capa de texto de pdf.js (selección y resaltado). */

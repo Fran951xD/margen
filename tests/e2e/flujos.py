@@ -8,6 +8,7 @@ Variables: MARGEN_URL (por defecto http://localhost:5174/), CHROME (ruta a Chrom
 """
 import asyncio, json, os, re, subprocess, sys, tempfile
 from playwright.async_api import async_playwright, expect
+sys.stdout.reconfigure(encoding='utf-8')  # consolas de Windows (cp1252) no imprimen − ni ✓
 
 URL = os.environ.get('MARGEN_URL', 'http://localhost:5174/')
 CHROME = os.environ.get('CHROME')

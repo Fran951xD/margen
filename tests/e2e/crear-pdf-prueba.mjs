@@ -2,7 +2,7 @@
 import { writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
-let PDFLib; try { PDFLib = require('pdf-lib'); } catch { PDFLib = require('/opt/npm-tools/node_modules/pdf-lib'); }
+const PDFLib = require('pdf-lib'); // devDependency: npm install
 const { PDFDocument, StandardFonts, rgb } = PDFLib;
 const pdf = await PDFDocument.create();
 pdf.setTitle('Contrato de locación de prueba');

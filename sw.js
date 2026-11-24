@@ -1,5 +1,5 @@
 // Guarda la aplicación para abrirla sin conexión (los pedidos a Gemini siempre van a la red).
-const VERSION = 'margen-v1';
+const VERSION = 'margen-v2';
 const ARCHIVOS = [
   './', 'index.html', 'manifest.webmanifest', 'css/margen.css',
   'js/app.js', 'js/ui.js', 'js/db.js', 'js/logica.js', 'js/gemini.js', 'js/lector.js', 'js/resaltar.js', 'js/servicio.js', 'js/demo.js', 'js/demo-paginas.js',
